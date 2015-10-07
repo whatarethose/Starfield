@@ -4,7 +4,7 @@ Particle [] part;
 void setup()
 {
 	size(600,600);
-	part = new Particle[100];
+	part = new Particle[500];
 	for(int a = 0; a<part.length;a++)
 	{
 		part[a]= new NormalParticle();
@@ -15,12 +15,13 @@ void setup()
 }
 void draw()
 {
+	fill(0,0,0,50);
+	rect(-1,-1,800,800);
 	noStroke();
-	background(0);
 	for(int b =0; b<part.length;b++)
 	{
-		part[b].show();
 		part[b].move();
+		part[b].show();
 	}
 	//your code here
 }
@@ -35,18 +36,19 @@ class NormalParticle implements Particle
 		mySpeed = Math.random()*5;
 		myColor = color((int)(Math.random()*255),(int)(Math.random()*255)
 			,(int)(Math.random()*255));
-		myAngle = (Math.random() * 10*Math.PI);
+		myAngle = (Math.random() *2*Math.PI);
 	}
 	public void move()
 	{
 		myX+= Math.cos(myAngle)*mySpeed;
 		myY+= Math.sin(myAngle)*mySpeed;
-		myAngle+=.05;
+		
+		myAngle+=.025;
 	}
 	public void show()
 	{
 		fill(myColor);
-		ellipse((float)myX,(float)myY,10,10);
+		ellipse((float)myX,(float)myY,7,7);
 	}
 	//your code here
 }
@@ -63,8 +65,8 @@ class OddballParticle implements Particle//uses an interface
 	int movement;
 	OddballParticle()
 	{
-		myX = setupSize/2;
-		myY = setupSize/2;
+		myX = Math.random()*(setupSize-50);
+		myY = Math.random()*(setupSize-50);
 		mySpeed = Math.random()*10;
 		myColor = color(255);
 	}
@@ -96,22 +98,12 @@ class OddballParticle implements Particle//uses an interface
 	}
 	//your code here
 }
-class JumboParticle implements Particle//uses inheritance
+class JumboParticle extends NormalParticle//uses inheritance
 {
-	double myX,myY,mySpeed,myAngle;
-	color myColor;
 	JumboParticle()
 	{
-		myX = setupSize/2;
-		myY = setupSize/2;
-		mySpeed = Math.random()*5;
-		myAngle = (Math.random()*(10)*Math.PI);
-		myColor = color(0,255,0);
-	}
-	public void move()
-	{
-		myX+= Math.cos(myAngle)*mySpeed;
-		myY+= Math.sin(myAngle)*mySpeed;
+		mySpeed = Math.random()*5+3;
+		myColor = color(255);
 	}
 	public void show()
 	{
@@ -120,4 +112,3 @@ class JumboParticle implements Particle//uses inheritance
 	}
 	//your code here
 }
-
