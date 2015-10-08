@@ -27,23 +27,31 @@ void draw()
 }
 class NormalParticle implements Particle
 {
-	double myX,myY,mySpeed,myAngle;
+	double myX,myY,mySpeed,myAngle,origin,addition;
 	color myColor;	
 	NormalParticle()
 	{
+		origin = setupSize/2;
 		myX=setupSize/2;
 		myY=setupSize/2;
 		mySpeed = Math.random()*5;
 		myColor = color((int)(Math.random()*255),(int)(Math.random()*255)
 			,(int)(Math.random()*255));
 		myAngle = (Math.random() *2*Math.PI);
+		addition = .025;
 	}
 	public void move()
 	{
 		myX+= Math.cos(myAngle)*mySpeed;
 		myY+= Math.sin(myAngle)*mySpeed;
-		
-		myAngle+=.025;
+		if()
+		{
+			addition= -addition; 
+		}
+		else
+		{
+			myAngle+=addition;
+		}
 	}
 	public void show()
 	{
