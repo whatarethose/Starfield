@@ -23,12 +23,14 @@ void draw()
 		part[b].move();
 		part[b].show();
 	}
+	text("Speed :" + ((NormalParticle)part[10]).addition,10,10);
 	//your code here
 }
 class NormalParticle implements Particle
 {
 	double myX,myY,mySpeed,myAngle,origin,addition;
 	color myColor;	
+	boolean swirl;
 	NormalParticle()
 	{
 		origin = setupSize/2;
@@ -39,18 +41,50 @@ class NormalParticle implements Particle
 			,(int)(Math.random()*255));
 		myAngle = (Math.random() *2*Math.PI);
 		addition = .025;
+		swirl = false;
 	}
 	public void move()
 	{
 		myX+= Math.cos(myAngle)*mySpeed;
 		myY+= Math.sin(myAngle)*mySpeed;
-		if()
+		if(dist( (float)myX,(float)myY, width/2,height/2) <= mySpeed/2)
 		{
-			addition= -addition; 
+			swirl=!swirl;
+		}
+		if(swirl == true)
+		{
+			myAngle-=addition; 
 		}
 		else
 		{
 			myAngle+=addition;
+		}
+		if(keyPressed)
+		{
+			if(key == 'a')
+			{
+				addition = addition +.001;
+			}		
+			else if(key == 'd')
+			{
+				if(addition <=.01)
+				{
+
+				}
+				else
+				{
+				 addition = addition -.001;	
+				}
+				
+			}
+			else if(key == 'r')
+			{	
+				addition = .025;
+			}
+			else
+			{
+				
+			}
 		}
 	}
 	public void show()
