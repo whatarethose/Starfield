@@ -23,7 +23,9 @@ void draw()
 		part[b].move();
 		part[b].show();
 	}
+	fill(255);
 	text("Speed :" + ((NormalParticle)part[10]).addition,10,10);
+	text("Angle :" + ((NormalParticle)part[10]).myAngle,10,30);
 	//your code here
 }
 class NormalParticle implements Particle
@@ -80,6 +82,14 @@ class NormalParticle implements Particle
 			else if(key == 'r')
 			{	
 				addition = .025;
+			}
+			else if(key =='w')
+			{
+				mySpeed-=.005;
+			}
+			else if(key == 's')
+			{
+				mySpeed+=.005;
 			}
 			else
 			{
