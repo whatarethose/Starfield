@@ -1,9 +1,9 @@
 //your code here
-int setupSize = 600;
+int setupSize = 700;
 Particle [] part;
 void setup()
 {
-	size(600,600);
+	size(700,700);
 	part = new Particle[500];
 	for(int a = 0; a<part.length;a++)
 	{
